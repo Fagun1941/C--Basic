@@ -1,0 +1,24 @@
+using System;  // Namespace declaration
+
+namespace MyFirstApp   // Namespace
+{
+    class Program      // Class
+    {
+        static void Main(string[] args)   // Entry point
+        {
+            Console.WriteLine("Hello, World!"); // Statement
+        }
+    }
+}
+
+Key point
+
+1.using System; → imports libraries (System has Console).
+
+2.namespace → logical grouping of classes.
+
+3.class Program → C# programs are inside classes.
+
+4.Main method → starting point of every C# program.
+
+Console.WriteLine() → outputs text to the screen.
