@@ -1,0 +1,106 @@
+Type Casting means converting one data type into another.
+In C#, we have two main types:
+
+1. Implicit Casting (Type Conversion)
+
+✅ Done automatically when there is no data loss.
+(smaller type → larger type)
+
+Example:
+
+int num = 100;       // int (32-bit)
+double d = num;      // automatically converted to double (64-bit)
+
+Console.WriteLine(d); // 100
+
+2. Explicit Casting (Type Casting)
+
+✅ Done manually by the programmer when data might be lost.
+Use (type) or methods.
+
+Example:
+
+double pi = 3.14159;
+int n = (int)pi;   // explicit cast
+Console.WriteLine(n); // 3
+
+3. Type Conversion Methods (Convert class)
+
+✅ Use Convert class for safe conversion.
+
+Example:
+
+string str = "123";
+int num = Convert.ToInt32(str);
+Console.WriteLine(num + 10); // 133
+
+4. Parse() and TryParse()
+
+Parse() → converts string to number (throws error if invalid).
+
+TryParse() → safer, returns true/false.
+
+Example:
+
+string str = "456";
+int num = int.Parse(str);
+Console.WriteLine(num);
+
+string badStr = "abc";
+bool success = int.TryParse(badStr, out int result);
+Console.WriteLine(success); // false
+Console.WriteLine(result);  // 0
+
+5. Boxing and Unboxing
+
+Boxing: Convert value type → object
+
+Unboxing: Convert object → value type
+
+Example:
+
+int x = 10;           // value type
+object obj = x;       // boxing
+int y = (int)obj;     // unboxing
+
+🛠 Example Program
+using System;
+
+namespace CastingDemo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Implicit
+            int i = 10;
+            double d = i;
+            Console.WriteLine($"Implicit: {d}");
+
+            // Explicit
+            double pi = 3.14;
+            int n = (int)pi;
+            Console.WriteLine($"Explicit: {n}");
+
+            // Convert
+            string str = "123";
+            int num = Convert.ToInt32(str);
+            Console.WriteLine($"Convert: {num}");
+
+            // Parse / TryParse
+            string s1 = "200";
+            int p1 = int.Parse(s1);
+            Console.WriteLine($"Parse: {p1}");
+
+            string s2 = "abc";
+            bool ok = int.TryParse(s2, out int p2);
+            Console.WriteLine($"TryParse Success? {ok}, Value: {p2}");
+
+            // Boxing & Unboxing
+            int val = 50;
+            object boxed = val;       // boxing
+            int unboxed = (int)boxed; // unboxing
+            Console.WriteLine($"Boxing-Unboxing: {unboxed}");
+        }
+    }
+}
