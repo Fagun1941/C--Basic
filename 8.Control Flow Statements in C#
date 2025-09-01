@@ -1,0 +1,124 @@
+Control flow statements determine the order in which statements are executed in a program.
+
+C# supports several types:
+
+1. Decision Making Statements
+
+Used to make decisions based on conditions.
+
+if
+
+if-else
+
+if-else if-else
+
+switch
+
+Example:
+
+int age = 20;
+
+if (age >= 18)
+{
+    Console.WriteLine("You are an adult");
+}
+else
+{
+    Console.WriteLine("You are not an adult");
+}
+
+2. Looping Statements
+
+Used to repeat code.
+
+for loop
+
+while loop
+
+do-while loop
+
+foreach loop (for arrays, lists)
+
+Example:
+
+for (int i = 1; i <= 5; i++)
+{
+    Console.WriteLine(i);
+}
+
+3. Jump Statements
+
+Used to transfer control:
+
+break → exit loop
+
+continue → skip current iteration
+
+goto → jump to a label
+
+Example:
+
+for (int i = 1; i <= 5; i++)
+{
+    if (i == 3) continue; // skip 3
+    if (i == 5) break;    // stop loop
+    Console.WriteLine(i);
+}
+
+4. Return Statement
+
+Exits from a method and optionally returns a value.
+
+int Sum(int x, int y)
+{
+    return x + y;
+}
+
+🛠 Example Program
+using System;
+
+namespace ControlFlowDemo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int num = 7;
+
+            // if-else
+            if (num % 2 == 0)
+                Console.WriteLine("Even");
+            else
+                Console.WriteLine("Odd");
+
+            // switch
+            switch (num)
+            {
+                case 1:
+                    Console.WriteLine("One");
+                    break;
+                case 7:
+                    Console.WriteLine("Seven");
+                    break;
+                default:
+                    Console.WriteLine("Other number");
+                    break;
+            }
+
+            // while loop
+            int i = 1;
+            while (i <= 3)
+            {
+                Console.WriteLine("While Loop: " + i);
+                i++;
+            }
+
+            // for loop with continue
+            for (int j = 1; j <= 5; j++)
+            {
+                if (j == 3) continue;
+                Console.WriteLine("For Loop: " + j);
+            }
+        }
+    }
+}
