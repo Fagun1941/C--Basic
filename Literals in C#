@@ -1,0 +1,109 @@
+Literals in C#
+
+A literal is a fixed value that you assign directly to a variable in your program.
+Example:
+
+int age = 25;       // 25 is a literal
+string name = "Ali"; // "Ali" is a literal
+
+📘 Types of Literals
+1. Integer Literals
+
+Whole numbers
+
+Default is int, but you can suffix:
+
+L → long
+
+U → unsigned
+
+UL → unsigned long
+
+Example:
+
+int x = 100;      // int
+long y = 100L;    // long
+uint z = 50U;     // unsigned int
+
+2. Floating-Point Literals
+
+Default is double, but you can suffix:
+
+F → float
+
+M → decimal
+
+Example:
+
+double d = 19.99;   // double by default
+float f = 19.99F;   // float
+decimal m = 19.99M; // decimal (high precision)
+
+3. Character Literals
+
+A single character inside single quotes 'A'
+
+Can use escape sequences:
+
+'\n' → newline
+
+'\t' → tab
+
+'\\' → backslash
+
+'\' → single quote
+
+Example:
+
+char c1 = 'A';
+char c2 = '\n'; // newline
+
+4. String Literals
+
+Sequence of characters inside double quotes "".
+
+Use @ for verbatim string (ignores escape sequences).
+
+Example:
+
+string s1 = "Hello World";
+string s2 = "C:\\Users\\Fagun";   // with escape
+string s3 = @"C:\Users\Fagun";    // verbatim string
+
+5. Boolean Literals
+
+Only true or false.
+
+bool isActive = true;
+
+6. Null Literal
+
+Represents no value.
+
+string str = null;
+
+🛠 Example Program
+using System;
+
+namespace LiteralDemo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int num = 42;              // integer literal
+            double pi = 3.14159;       // double literal
+            float price = 9.99F;       // float literal
+            char grade = 'A';          // char literal
+            string path = @"C:\Data";  // string literal with verbatim
+            bool isReady = true;       // boolean literal
+
+            Console.WriteLine($"Number: {num}");
+            Console.WriteLine($"Pi: {pi}");
+            Console.WriteLine($"Price: {price}");
+            Console.WriteLine($"Grade: {grade}");
+            Console.WriteLine($"Path: {path}");
+            Console.WriteLine($"Is Ready: {isReady}");
+        }
+    }
+}
