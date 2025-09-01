@@ -1,0 +1,175 @@
+1. What is static in C#?
+
+The static keyword is used to declare members (variables, methods, classes) that belong to the class itself, not to any object.
+
+Only one copy exists in memory, shared across all instances of the class.
+
+You can access static members without creating an object.
+
+🔹 2. Static Variables
+
+A static variable is shared by all objects of the class.
+
+Useful for data common to all objects.
+
+Example:
+
+using System;
+
+class Counter
+{
+    public static int count = 0; // static variable
+
+    public Counter()
+    {
+        count++;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Counter c1 = new Counter();
+        Counter c2 = new Counter();
+        Counter c3 = new Counter();
+
+        Console.WriteLine("Number of objects: " + Counter.count); // Access without object
+    }
+}
+
+
+Output:
+
+Number of objects: 3
+
+
+✅ Observation: count is shared among all objects.
+
+🔹 3. Static Methods
+
+Static methods belong to the class and cannot access non-static members directly.
+
+You can call them without creating an object.
+
+Example:
+
+using System;
+
+class MathHelper
+{
+    public static int Multiply(int a, int b)
+    {
+        return a * b;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        int result = MathHelper.Multiply(5, 3); // Call static method
+        Console.WriteLine("Result = " + result);
+    }
+}
+
+
+Output:
+
+Result = 15
+
+🔹 4. Static Class
+
+A static class can only contain static members.
+
+You cannot create an object of a static class.
+
+Useful for utility/helper classes.
+
+Example:
+
+using System;
+
+static class Utility
+{
+    public static void Greet()
+    {
+        Console.WriteLine("Hello from static class!");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Utility.Greet(); // Access static method without object
+    }
+}
+
+
+Output:
+
+Hello from static class!
+
+🔹 5. Static Constructor
+
+Used to initialize static members of a class.
+
+Called automatically once before the first object or static member is accessed.
+
+Cannot have parameters.
+
+Example:
+
+using System;
+
+class Example
+{
+    public static int count;
+
+    static Example() // static constructor
+    {
+        count = 100;
+        Console.WriteLine("Static constructor called!");
+    }
+
+    public Example()
+    {
+        Console.WriteLine("Instance constructor called!");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Count: " + Example.count); // Triggers static constructor
+        Example e1 = new Example();
+    }
+}
+
+
+Output:
+
+Static constructor called!
+Count: 100
+Instance constructor called!
+
+🔹 6. Key Points About static
+
+Static members are shared by all instances.
+
+Static members can be accessed without creating an object.
+
+Static methods cannot access instance members directly.
+
+Static classes cannot be instantiated and can only contain static members.
+
+Static constructor runs once automatically before first access.
+
+🔹 7. When to Use static?
+
+✅ Utility or helper methods (like Math.Sqrt)
+✅ Values shared among all objects (like counter)
+✅ Constants that are common to all objects
+✅ Singleton patterns or global access data
