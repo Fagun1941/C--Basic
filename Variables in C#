@@ -1,0 +1,103 @@
+A variable is a named storage location in memory that holds a value.
+In C#, every variable must have:
+
+Type (what kind of data it stores)
+
+Name (identifier)
+
+Value (optional at start)
+
+📘 Rules for Naming Variables
+
+✔ Can contain letters, digits, underscore (_)
+✔ Must start with a letter or _
+❌ Cannot use C# keywords (like int, class)
+✔ Follow camelCase for local variables (example: studentName)
+
+📘 Declaration and Initialization
+int age;         // declaration
+age = 25;        // initialization
+
+int year = 2025; // declaration + initialization
+
+📘 Types of Variables
+1. Local Variables
+
+Declared inside a method.
+
+void Test()
+{
+    int x = 10;  // local variable
+}
+
+2. Instance Variables
+
+Declared inside a class but outside any method (each object gets its own copy).
+
+class Student
+{
+    public string name;  // instance variable
+}
+
+3. Static Variables
+
+Shared across all objects (same memory).
+
+class Student
+{
+    public static int count = 0;
+}
+
+4. Constant Variables
+
+Fixed values, cannot be changed.
+
+const double Pi = 3.14159;
+
+5. Read-only Variables
+
+Value can only be assigned at declaration or inside a constructor.
+
+readonly int id;
+public Student(int id)
+{
+    this.id = id; // allowed only in constructor
+}
+
+📘 var and dynamic
+
+var → compiler infers type at compile time
+
+dynamic → type resolved at runtime
+
+Example:
+
+var x = 10;       // int
+var y = "Hello";  // string
+
+dynamic z = 100;
+z = "Now I'm a string"; // allowed
+
+🛠 Example Program
+using System;
+
+namespace VariablesDemo
+{
+    class Program
+    {
+        const double Pi = 3.14; // constant variable
+        static int counter = 0; // static variable
+
+        static void Main(string[] args)
+        {
+            int age = 26;            // local variable
+            string name = "Fagun";   // local variable
+
+            counter++; // static variable usage
+
+            Console.WriteLine($"Name: {name}, Age: {age}");
+            Console.WriteLine($"Pi value: {Pi}");
+            Console.WriteLine($"Counter: {counter}");
+        }
+    }
+}
