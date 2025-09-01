@@ -1,0 +1,87 @@
+Common Methods
+
+1.Write() → Prints without a new line
+
+Console.Write("Hello");
+Console.Write(" World"); 
+// Output: Hello World (same line)
+
+
+2.WriteLine() → Prints with a new line
+
+Console.WriteLine("Hello");
+Console.WriteLine("World");
+// Output:
+// Hello
+// World
+
+
+3.ReadLine() → Reads input as string
+
+Console.Write("Enter your name: ");
+string name = Console.ReadLine();
+Console.WriteLine("Hello, " + name);
+
+
+ReadKey() → Reads a single key press
+
+Console.WriteLine("Press any key to continue...");
+Console.ReadKey();
+
+
+Clear() → Clears the console
+
+Console.Clear();
+
+📘 Common Properties
+
+ForegroundColor → Text color
+
+Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine("This is green text");
+Console.ResetColor(); // back to default
+
+
+BackgroundColor → Background color
+
+Console.BackgroundColor = ConsoleColor.Yellow;
+Console.ForegroundColor = ConsoleColor.Black;
+Console.WriteLine("Yellow background with black text");
+Console.ResetColor();
+
+
+Title → Sets the console window title
+
+Console.Title = "My C# Program";
+
+
+WindowWidth & WindowHeight → Resize console
+
+Console.WindowWidth = 100;
+Console.WindowHeight = 30;
+
+🛠 Example
+using System;
+
+namespace ConsoleDemo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Demo App";
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
+            Console.Write("Enter your age: ");
+            string age = Console.ReadLine();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Your age is " + age);
+
+            Console.ResetColor();
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}
+
