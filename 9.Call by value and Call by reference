@@ -1,0 +1,96 @@
+1. What is Call by Value and Call by Reference?
+
+Call by Value: A copy of the actual value is passed to the function.
+→ Changes inside the function do not affect the original variable.
+
+Call by Reference: A reference (address) of the variable is passed.
+→ Changes inside the function do affect the original variable.
+
+🔹 2. Call by Value in C#
+
+By default, C# uses Call by Value.
+
+The function works with a copy of the variable.
+
+using System;
+
+class Program
+{
+    static void Increment(int num) // num is a copy of original
+    {
+        num = num + 1;
+        Console.WriteLine("Inside Function: " + num);
+    }
+
+    static void Main()
+    {
+        int value = 5;
+        Increment(value);            // Call by Value
+        Console.WriteLine("Outside Function: " + value);
+    }
+}
+
+
+Output:
+
+Inside Function: 6
+Outside Function: 5
+
+
+✅ Observation: Original variable value is unchanged.
+
+🔹 3. Call by Reference in C#
+
+Use ref or out keyword in C# to pass by reference.
+
+The function works with the actual variable, not a copy.
+
+Using ref:
+using System;
+
+class Program
+{
+    static void Increment(ref int num) // reference is passed
+    {
+        num = num + 1;
+        Console.WriteLine("Inside Function: " + num);
+    }
+
+    static void Main()
+    {
+        int value = 5;
+        Increment(ref value);          // Call by Reference
+        Console.WriteLine("Outside Function: " + value);
+    }
+}
+
+
+Output:
+
+Inside Function: 6
+Outside Function: 6
+
+
+✅ Observation: Original variable value is changed.
+
+Using out:
+
+Similar to ref, but variable does not need to be initialized before calling.
+
+using System;
+
+class Program
+{
+    static void GetValues(out int x, out int y)
+    {
+        x = 10;
+        y = 20;
+    }
+
+    static void Main()
+    {
+        int a, b;
+        GetValues(out a, out b);
+        Console.WriteLine(a + ", " + b); // 10, 20
+    }
+}
