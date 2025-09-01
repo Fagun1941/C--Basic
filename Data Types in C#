@@ -1,0 +1,95 @@
+Data Types in C#
+
+In C#, every variable must have a data type → it tells the compiler what kind of data the variable can hold.
+C# is strongly typed, so you cannot assign a string to an int, etc.
+
+Categories of Data Types
+1. Value Types
+
+👉 Stored directly in memory (stack).
+
+Integer types:
+byte (0–255), short, int, long
+
+Floating-point types:
+float, double, decimal
+
+Other types:
+char (single character), bool (true/false)
+
+Example:
+
+int age = 25;
+float price = 9.99f;
+bool isActive = true;
+char grade = 'A';
+
+2. Reference Types
+
+👉 Stored as a reference (pointer) in memory (heap).
+
+string
+
+object (base type of all types in C#)
+
+arrays
+
+classes
+
+Example:
+
+string name = "Fagun";
+object anything = 123; 
+int[] numbers = { 1, 2, 3 };
+
+3. Nullable Types
+
+👉 Allow value types to store null.
+
+int? marks = null;
+if (marks.HasValue)
+    Console.WriteLine(marks.Value);
+else
+    Console.WriteLine("No marks yet");
+
+📘 Default Values
+
+Each data type has a default value:
+
+int → 0
+
+double → 0.0
+
+bool → false
+
+string → null
+
+Example:
+
+int x; // default 0
+bool b; // default false
+string s; // default null
+
+ Example Program
+using System;
+
+namespace DataTypesDemo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int age = 26;
+            double salary = 55000.75;
+            bool isEmployed = true;
+            char grade = 'A';
+            string name = "Fagun";
+
+            Console.WriteLine($"Name: {name}");
+            Console.WriteLine($"Age: {age}");
+            Console.WriteLine($"Salary: {salary}");
+            Console.WriteLine($"Employed: {isEmployed}");
+            Console.WriteLine($"Grade: {grade}");
+        }
+    }
+}
