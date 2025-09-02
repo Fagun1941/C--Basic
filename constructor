@@ -1,0 +1,140 @@
+A constructor is a special method inside a class that is automatically called when you create (instantiate) an object of that class.
+
+Name is same as the class name.
+
+Doesn’t have a return type (not even void).
+
+Used to initialize fields/variables of a class.
+
+📝 Example
+public class Car
+{
+    public string Brand;
+    public int Year;
+
+    // Constructor
+    public Car(string brand, int year)
+    {
+        Brand = brand;
+        Year = year;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Car myCar = new Car("Toyota", 2024); 
+        Console.WriteLine($"{myCar.Brand} - {myCar.Year}");
+    }
+}
+
+
+👉 When you write new Car("Toyota", 2024), the constructor runs automatically and sets values.
+
+⚡ Types of Constructors in C#
+Default Constructor
+
+Takes no parameters.
+
+Provides default values.
+
+public class Student
+{
+    public string Name;
+
+    public Student() // Default constructor
+    {
+        Name = "Unknown";
+    }
+}
+
+Parameterized Constructor
+
+Takes parameters to set values at object creation.
+
+public class Student
+{
+    public string Name;
+    public int Age;
+
+    public Student(string name, int age) // Parameterized
+    {
+        Name = name;
+        Age = age;
+    }
+}
+
+Copy Constructor
+
+Creates a new object by copying values from another object.
+
+public class Student
+{
+    public string Name;
+    public int Age;
+
+    public Student(Student s) // Copy constructor
+    {
+        Name = s.Name;
+        Age = s.Age;
+    }
+}
+
+Static Constructor
+
+Runs once only when the class is first loaded.
+
+Used to initialize static members.
+
+public class Logger
+{
+    public static string FilePath;
+
+    static Logger() // Static constructor
+    {
+        FilePath = "log.txt";
+        Console.WriteLine("Static constructor called once");
+    }
+}
+
+Private Constructor
+
+Prevents creating objects directly from outside the class.
+
+Used in Singleton pattern.
+
+public class Singleton
+{
+    private static Singleton _instance;
+    private Singleton() { } // Private constructor
+
+    public static Singleton GetInstance()
+    {
+        if (_instance == null)
+            _instance = new Singleton();
+
+        return _instance;
+    }
+}
+
+✅ Why do we use Constructors?
+
+Initialization
+
+Instead of setting properties manually after object creation, constructors let you set them automatically.
+
+var user = new User("Fagun", 25);
+
+
+Encapsulation
+
+You can control how an object is created (e.g., force required fields).
+
+Code Readability & Safety
+
+Makes sure every object starts with valid values.
+
+Special Logic at Startup
+
+Example: open a database connection, initialize static data, or configure default settings.
