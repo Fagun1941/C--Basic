@@ -1,0 +1,124 @@
+What is Method Overriding?
+
+Method Overriding allows a derived class (child) to provide its own implementation of a method that is already defined in the base class (parent).
+
+It is achieved using virtual and override keywords.
+
+👉 The base class method must be marked as virtual (or abstract), and the derived class method must use override.
+
+🔹 Syntax
+class BaseClass
+{
+    public virtual void Display()
+    {
+        Console.WriteLine("This is the Base Class method.");
+    }
+}
+
+class DerivedClass : BaseClass
+{
+    public override void Display()
+    {
+        Console.WriteLine("This is the Derived Class method (Overridden).");
+    }
+}
+
+🔹 Real-Life Example: Animal Sounds 🐶🐱
+using System;
+
+class Animal
+{
+    // Base method
+    public virtual void Speak()
+    {
+        Console.WriteLine("Animal makes a sound");
+    }
+}
+
+class Dog : Animal
+{
+    // Overriding method
+    public override void Speak()
+    {
+        Console.WriteLine("Dog barks");
+    }
+}
+
+class Cat : Animal
+{
+    // Overriding method
+    public override void Speak()
+    {
+        Console.WriteLine("Cat meows");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Animal myDog = new Dog();
+        Animal myCat = new Cat();
+
+        myDog.Speak(); // Output: Dog barks
+        myCat.Speak(); // Output: Cat meows
+    }
+}
+
+
+✅ Here, both Dog and Cat override the Speak() method of Animal.
+✅ This is runtime polymorphism (decision happens at runtime).
+
+🔹 Real-World Example: Payment Systems 💳
+using System;
+
+class Payment
+{
+    public virtual void ProcessPayment()
+    {
+        Console.WriteLine("Processing generic payment...");
+    }
+}
+
+class CreditCardPayment : Payment
+{
+    public override void ProcessPayment()
+    {
+        Console.WriteLine("Processing Credit Card payment...");
+    }
+}
+
+class PayPalPayment : Payment
+{
+    public override void ProcessPayment()
+    {
+        Console.WriteLine("Processing PayPal payment...");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Payment payment;
+
+        payment = new CreditCardPayment();
+        payment.ProcessPayment(); // Output: Processing Credit Card payment...
+
+        payment = new PayPalPayment();
+        payment.ProcessPayment(); // Output: Processing PayPal payment...
+    }
+}
+
+
+✅ In a real e-commerce app, the base class (Payment) defines a generic payment process, and different payment methods (CreditCardPayment, PayPalPayment) override it with their own logic.
+
+🔹 Key Points
+
+Base method → virtual
+
+Derived method → override
+
+Provides runtime polymorphism
+
+Used when child class needs a different behavior from the parent
