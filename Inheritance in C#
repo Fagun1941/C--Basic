@@ -1,0 +1,161 @@
+Inheritance is one of the four pillars of OOP.
+
+It allows a class (child/derived class) to acquire the properties and methods of another class (parent/base class).
+
+Purpose: code reusability and hierarchical classification.
+
+🔹 Why Use Inheritance?
+
+Reusability → No need to rewrite common code.
+
+Organization → Represents a real-world “is-a” relationship.
+
+Polymorphism → Derived classes can override parent behavior.
+
+Maintainability → Changes in base class automatically reflect in derived classes.
+
+🔹 Syntax
+class BaseClass
+{
+    public void BaseMethod()
+    {
+        Console.WriteLine("Method from Base Class");
+    }
+}
+
+class DerivedClass : BaseClass  // Inherits BaseClass
+{
+    public void DerivedMethod()
+    {
+        Console.WriteLine("Method from Derived Class");
+    }
+}
+
+Usage
+DerivedClass obj = new DerivedClass();
+obj.BaseMethod();    // Inherited from BaseClass ✅
+obj.DerivedMethod(); // Own method ✅
+
+🔹 Types of Inheritance in C#
+
+C# does not support multiple class inheritance (one class cannot inherit from multiple classes) but supports interface inheritance.
+
+Single Inheritance – Child inherits one base class.
+
+Multilevel Inheritance – Chain of inheritance (Grandparent → Parent → Child).
+
+Hierarchical Inheritance – Multiple classes inherit from a single base class.
+
+Hybrid Inheritance – Combination using interfaces (since multiple classes cannot be inherited directly).
+
+🔹 Example 1: Real-Life (Vehicle)
+// Base class
+public class Vehicle
+{
+    public int Wheels;
+    public void Start()
+    {
+        Console.WriteLine("Vehicle started");
+    }
+}
+
+// Derived class
+public class Car : Vehicle
+{
+    public string Brand;
+    public void Honk()
+    {
+        Console.WriteLine("Car honks");
+    }
+}
+
+Usage
+Car myCar = new Car();
+myCar.Wheels = 4;  // inherited property
+myCar.Brand = "Toyota"; 
+myCar.Start();     // inherited method
+myCar.Honk();      // own method
+
+
+Explanation:
+
+Car is-a Vehicle, so it can use Start() and Wheels.
+
+We don’t need to rewrite the code from Vehicle.
+
+🔹 Example 2: Multilevel Inheritance
+public class Animal
+{
+    public void Eat() => Console.WriteLine("Eating");
+}
+
+public class Dog : Animal
+{
+    public void Bark() => Console.WriteLine("Barking");
+}
+
+public class Puppy : Dog
+{
+    public void Sleep() => Console.WriteLine("Sleeping");
+}
+
+Usage
+Puppy p = new Puppy();
+p.Eat();  // from Animal
+p.Bark(); // from Dog
+p.Sleep(); // own method
+
+
+✅ Multilevel inheritance shows how behaviors are passed down the chain.
+
+🔹 Real-Life Analogy
+
+Animal Hierarchy
+
+Base: Animal → has Eat(), Sleep()
+
+Derived: Dog → adds Bark()
+
+Derived: Puppy → adds Play()
+
+Employee Hierarchy
+
+Base: Employee → Name, ID, Salary
+
+Derived: Manager → adds Department
+
+Derived: Developer → adds ProgrammingLanguage
+
+Vehicle Hierarchy
+
+Base: Vehicle → Wheels, Engine
+
+Derived: Car → Brand, Doors
+
+Derived: ElectricCar → BatteryCapacity
+
+🔹 Key Points in C#
+
+Single inheritance is supported (class can inherit one base class).
+
+Base class members (public/protected) are accessible in derived class.
+
+Private members of base class are not accessible directly.
+
+virtual and override allow derived classes to customize base methods.
+
+public class Vehicle
+{
+    public virtual void Start()
+    {
+        Console.WriteLine("Vehicle started");
+    }
+}
+
+public class Car : Vehicle
+{
+    public override void Start()
+    {
+        Console.WriteLine("Car started with key");
+    }
+}
