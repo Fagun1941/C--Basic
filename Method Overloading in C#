@@ -1,0 +1,110 @@
+Method Overloading in C# means:
+
+A class can have multiple methods with the same name but different parameter lists.
+
+The compiler decides which method to call at compile-time (this is also called Compile-time Polymorphism or Static Polymorphism).
+
+🔹 Rules of Method Overloading
+
+Two methods with the same name are considered overloaded if they differ in:
+
+Number of parameters
+
+Type of parameters
+
+Order of parameters
+
+👉 But return type alone cannot differentiate overloaded methods.
+
+🔹 Example 1: Calculator
+using System;
+
+class Calculator
+{
+    // Method to add two integers
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+
+    // Method to add three integers
+    public int Add(int a, int b, int c)
+    {
+        return a + b + c;
+    }
+
+    // Method to add two doubles
+    public double Add(double a, double b)
+    {
+        return a + b;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Calculator calc = new Calculator();
+
+        Console.WriteLine(calc.Add(5, 10));         // Calls int Add(int, int)
+        Console.WriteLine(calc.Add(5, 10, 15));     // Calls int Add(int, int, int)
+        Console.WriteLine(calc.Add(2.5, 3.7));      // Calls double Add(double, double)
+    }
+}
+
+
+✅ Here the method Add() is overloaded in three different ways.
+
+🔹 Example 2: Real-Life ATM Machine
+
+Think of an ATM where you can withdraw money in different ways:
+
+By amount only (e.g., 1000 taka from main account).
+
+By amount + account type (e.g., 1000 taka from savings account).
+
+By amount + account type + currency type (e.g., 1000 taka from savings in USD).
+
+class ATM
+{
+    public void Withdraw(int amount)
+    {
+        Console.WriteLine($"Withdraw {amount} from main account.");
+    }
+
+    public void Withdraw(int amount, string accountType)
+    {
+        Console.WriteLine($"Withdraw {amount} from {accountType} account.");
+    }
+
+    public void Withdraw(int amount, string accountType, string currency)
+    {
+        Console.WriteLine($"Withdraw {amount} {currency} from {accountType} account.");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        ATM atm = new ATM();
+
+        atm.Withdraw(500);                                 // main account
+        atm.Withdraw(1000, "Savings");                     // savings account
+        atm.Withdraw(200, "Current", "USD");               // current account in USD
+    }
+}
+
+🔹 Why Use Method Overloading?
+
+Readability & Clean Code
+
+Instead of writing multiple methods like AddInt, AddDouble, AddThreeNumbers, you just use Add() with different parameters.
+
+Flexibility
+
+Same operation with different input types.
+
+Polymorphism
+
+Implements compile-time polymorphism in OOP.
