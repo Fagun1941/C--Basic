@@ -1,0 +1,101 @@
+Access specifiers (also called access modifiers) in C# define how accessible (visible/usable) a class, method, or variable is to other parts of your program.
+
+They provide encapsulation → hiding internal details and only exposing what’s necessary.
+
+🛠️ Types of Access Specifiers in C#
+1. public
+
+Accessible from anywhere in the project or other projects (if referenced).
+
+No restrictions.
+
+public class Car
+{
+    public string Brand = "Toyota";
+}
+
+Car c = new Car();
+Console.WriteLine(c.Brand);  // Accessible ✅
+
+2. private (default if not specified)
+
+Accessible only within the same class.
+
+Cannot be used outside.
+
+public class Car
+{
+    private string EngineNumber = "ENG12345";
+}
+
+Car c = new Car();
+// Console.WriteLine(c.EngineNumber); ❌ Error: inaccessible
+
+3. protected
+
+Accessible within the same class and in derived (child) classes.
+
+Not accessible from outside classes unless inherited.
+
+public class Vehicle
+{
+    protected int Wheels = 4;
+}
+
+public class Car : Vehicle
+{
+    public void Show()
+    {
+        Console.WriteLine(Wheels);  // Accessible ✅
+    }
+}
+
+Car c = new Car();
+// Console.WriteLine(c.Wheels); ❌ Error
+
+4. internal
+
+Accessible only within the same project/assembly.
+
+Not accessible if another project references it.
+
+internal class Helper
+{
+    internal void Display() => Console.WriteLine("Internal method");
+}
+
+
+👉 If another project references this project, it cannot use Helper.
+
+5. protected internal
+
+Combination of protected + internal.
+
+Accessible within the same assembly OR in derived classes (even if in another assembly).
+
+public class Vehicle
+{
+    protected internal string Model = "SUV";
+}
+
+6. private protected (C# 7.2+)
+
+Accessible within the same class OR its derived classes, but only inside the same assembly.
+
+public class Vehicle
+{
+    private protected string Type = "Truck";
+}
+
+
+public → A car’s color (everyone can see it).
+
+private → The car’s engine serial number (hidden, only manufacturer knows).
+
+protected → A base Vehicle class has number of wheels (car, bus, bike inherit this).
+
+internal → A company’s internal tools (only usable within company project).
+
+protected internal → Company tools that can also be used by subsidiaries.
+
+private protected → Special features that are only for selected models inside the same factory.
