@@ -1,0 +1,132 @@
+Abstraction is one of the four pillars of OOP.
+
+It is the concept of hiding the complex implementation details and showing only the essential features to the user.
+
+In C#, abstraction is achieved using abstract classes and interfaces.
+
+👉 In simple words:
+
+“You only see what you need to use, not how it works inside.”
+
+🔹 Why Use Abstraction?
+
+Hide complexity → Users don’t need to know internal logic.
+
+Reusability → Define common behavior in abstract classes or interfaces.
+
+Flexibility & Maintainability → Internal implementation can change without affecting users.
+
+Polymorphism support → Different classes can implement abstract methods differently.
+
+🔹 Abstraction Using Abstract Class
+Example 1: Vehicles
+// Abstract class
+public abstract class Vehicle
+{
+    public abstract void Start();   // Abstract method (no body)
+    public abstract void Stop();    // Abstract method
+}
+
+// Derived class
+public class Car : Vehicle
+{
+    public override void Start()
+    {
+        Console.WriteLine("Car started with key");
+    }
+
+    public override void Stop()
+    {
+        Console.WriteLine("Car stopped with brake");
+    }
+}
+
+// Usage
+class Program
+{
+    static void Main()
+    {
+        Vehicle myCar = new Car();
+        myCar.Start(); // Only sees Start method, not internal logic
+        myCar.Stop();
+    }
+}
+
+
+✅ Here:
+
+Vehicle hides the internal details of starting and stopping.
+
+Car provides the actual implementation.
+
+User only knows “I can start or stop a vehicle”, not how it works internally.
+
+🔹 Abstraction Using Interface
+Example 2: Payment System
+public interface IPayment
+{
+    void Pay(decimal amount);  // Abstract by default
+}
+
+public class CreditCardPayment : IPayment
+{
+    public void Pay(decimal amount)
+    {
+        Console.WriteLine($"Paid {amount} using Credit Card");
+    }
+}
+
+public class PayPalPayment : IPayment
+{
+    public void Pay(decimal amount)
+    {
+        Console.WriteLine($"Paid {amount} using PayPal");
+    }
+}
+
+// Usage
+class Program
+{
+    static void Main()
+    {
+        IPayment payment1 = new CreditCardPayment();
+        IPayment payment2 = new PayPalPayment();
+
+        payment1.Pay(1000); // User doesn’t know internal steps
+        payment2.Pay(500);
+    }
+}
+
+
+✅ Here:
+
+IPayment defines what a payment can do, not how it does it.
+
+Different payment methods can implement their own logic.
+
+🔹 Real-Life Analogies
+
+TV Remote
+
+You press buttons (essential features)
+
+You don’t need to know how the TV processes signals internally
+
+Car Driving
+
+You press the accelerator, brake, or clutch (essential features)
+
+You don’t need to know how the engine, gears, and fuel system work
+
+ATM Machine
+
+You can withdraw or deposit money (essential functions)
+
+Internal bank processing is hidden
+
+🔹 Difference Between Encapsulation and Abstraction
+Feature	Encapsulation	Abstraction
+Purpose	Hide data (fields)	Hide implementation (methods/logic)
+How	Private fields + public methods	Abstract class or interface
+Focus	Data security & controlled access	Only essential functionalities
+Example	Bank account balance field	Payment process (CreditCard/PayPal)
