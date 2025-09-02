@@ -1,0 +1,113 @@
+What is Encapsulation?
+
+Encapsulation is one of the four pillars of OOP (Object-Oriented Programming).
+It means wrapping data (fields/properties) and methods (functions) into a single unit (class) and controlling access to them.
+
+👉 In simpler words:
+
+You hide the internal details of how something works.
+
+You only expose necessary parts to the outside world.
+
+This prevents unauthorized or accidental changes to important data.
+
+🔹 Why use Encapsulation?
+
+Data Hiding → Protects sensitive data by restricting direct access.
+
+Security → Users can’t misuse private data.
+
+Flexibility → You can change implementation without affecting outside code.
+
+Controlled Access → You define how data is read/modified (via get and set).
+
+Maintainability → Cleaner and more organized code.
+
+🔹 Example 1: Bank Account (Real-Life)
+
+Imagine a bank account. You should not allow users to directly change the balance field.
+
+public class BankAccount
+{
+    // Private field (hidden from outside)
+    private decimal balance;
+
+    // Constructor
+    public BankAccount(decimal initialBalance)
+    {
+        balance = initialBalance;
+    }
+
+    // Public method to deposit money (controlled access)
+    public void Deposit(decimal amount)
+    {
+        if (amount > 0)
+        {
+            balance += amount;
+        }
+    }
+
+    // Public method to withdraw money (controlled access)
+    public void Withdraw(decimal amount)
+    {
+        if (amount > 0 && amount <= balance)
+        {
+            balance -= amount;
+        }
+    }
+
+    // Public method to check balance (read-only)
+    public decimal GetBalance()
+    {
+        return balance;
+    }
+}
+
+🔸 Usage:
+var account = new BankAccount(1000);
+
+account.Deposit(500);   // ✅ Allowed
+account.Withdraw(200);  // ✅ Allowed
+
+Console.WriteLine(account.GetBalance()); // 1300
+
+// ❌ account.balance = 100000;  // Not allowed (balance is private)
+
+
+✅ This ensures no one can directly manipulate balance, only through proper rules.
+
+🔹 Example 2: Employee Salary (Controlled Access)
+public class Employee
+{
+    private decimal salary;
+
+    public decimal Salary
+    {
+        get { return salary; }   // Encapsulation: controlled read
+        set
+        {
+            if (value > 0)       // Validation before setting
+                salary = value;
+        }
+    }
+}
+
+Usage:
+Employee emp = new Employee();
+emp.Salary = 50000;   // ✅ Allowed
+emp.Salary = -1000;   // ❌ Ignored (invalid)
+Console.WriteLine(emp.Salary); // 50000
+
+🔹 Real-Life Analogy
+
+Think of encapsulation like a TV remote:
+
+You can press buttons (public methods) to control the TV.
+
+But you cannot directly touch the internal circuits (private fields).
+
+The manufacturer decides what you can access.
+
+✅ In short:
+Encapsulation = Data Hiding + Controlled Access.
+It keeps your code secure, flexible, and easy to maintain.
