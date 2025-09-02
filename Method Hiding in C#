@@ -1,0 +1,73 @@
+What is Method Hiding in C#?
+
+Method Hiding occurs when a child class defines a method with the same name as the parent class method.
+
+Instead of overriding the method, it hides the base class version.
+
+In C#, this is done using the new keyword.
+
+🔹 Syntax
+class BaseClass
+{
+    public void Show()
+    {
+        Console.WriteLine("Base class Show method");
+    }
+}
+
+class DerivedClass : BaseClass
+{
+    public new void Show()
+    {
+        Console.WriteLine("Derived class Show method");
+    }
+}
+
+🔹 Real-Life Example
+
+Imagine you have a general notification system (BaseClass) and a specialized email notification system (DerivedClass).
+
+using System;
+
+class Notification
+{
+    public void Send()
+    {
+        Console.WriteLine("Sending general notification...");
+    }
+}
+
+class EmailNotification : Notification
+{
+    public new void Send()
+    {
+        Console.WriteLine("Sending Email notification...");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Notification general = new Notification();
+        general.Send();  // Calls Base class method
+
+        EmailNotification email = new EmailNotification();
+        email.Send();  // Calls Derived class method
+
+        Notification poly = new EmailNotification();
+        poly.Send();   // ❗ Calls Base class method (because of Hiding, not Overriding)
+    }
+}
+
+🔹 Output
+Sending general notification...
+Sending Email notification...
+Sending general notification...
+
+🔹 Difference Between Method Hiding and Overriding
+Feature	Method Hiding	Method Overriding
+Keyword	new	override
+Base Method	Doesn’t need virtual	Must be virtual or abstract
+Behavior	Base method can still be called with base reference	Derived method is always called if overridden
+Example Use	When you don’t want to modify base behavior, but create a new version	When you want to change base class behavior
