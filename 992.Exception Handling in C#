@@ -1,0 +1,67 @@
+What is an Exception?
+
+An Exception is an unexpected error that occurs during the execution of a program.
+For example:
+
+Dividing a number by zero
+
+Accessing an array element outside its bounds
+
+Opening a file that doesn’t exist
+
+When such errors occur, C# throws an Exception object which can be handled using try-catch-finally blocks.
+
+🔹 Types of Errors
+
+Compile-time Errors
+
+Found by the compiler (e.g., syntax errors, missing semicolon).
+
+Must be fixed before running.
+
+Runtime Errors (Exceptions)
+
+Occur while running (e.g., divide by zero, null reference).
+
+Handled using exception handling.
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        try
+        {
+            Console.WriteLine("Enter first number:");
+            int num1 = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter second number:");
+            int num2 = int.Parse(Console.ReadLine());
+
+            // This may throw DivideByZeroException
+            int result = num1 / num2;
+
+            Console.WriteLine($"Result: {num1} / {num2} = {result}");
+        }
+        catch (FormatException ex)
+        {
+            Console.WriteLine("Error: Please enter a valid number.");
+            Console.WriteLine("Details: " + ex.Message);
+        }
+        catch (DivideByZeroException ex)
+        {
+            Console.WriteLine("Error: Cannot divide by zero.");
+            Console.WriteLine("Details: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Something went wrong.");
+            Console.WriteLine("Details: " + ex.Message);
+        }
+        finally
+        {
+            Console.WriteLine("Program finished (finally block executed).");
+        }
+    }
+}
