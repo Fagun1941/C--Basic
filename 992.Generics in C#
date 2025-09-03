@@ -1,0 +1,131 @@
+Generics in C# = A way to create classes, methods, interfaces, and collections that can work with any data type while maintaining type safety and avoiding code duplication.
+
+👉 Think of Generics as “templates” for types.
+
+Example:
+List<int> numbers = new List<int>();     // Works with int
+List<string> names = new List<string>(); // Works with string
+
+
+✔ One class (List<T>) works for all types (int, string, double, etc.).
+
+Why Use Generics?
+
+✅ Type Safety – Detects type errors at compile time
+✅ Code Reusability – Same code works for any data type
+✅ Performance – Avoids boxing/unboxing
+✅ Flexibility – Works with collections, delegates, LINQ, etc.
+
+🔹 Syntax
+class ClassName<T>
+{
+    // Use T as a placeholder for a type
+}
+
+🔹 Example 1: Generic Class
+class Box<T>
+{
+    public T Value { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Box<int> intBox = new Box<int>();
+        intBox.Value = 100;
+
+        Box<string> strBox = new Box<string>();
+        strBox.Value = "Hello Generics";
+
+        Console.WriteLine(intBox.Value);   // Output: 100
+        Console.WriteLine(strBox.Value);   // Output: Hello Generics
+    }
+}
+
+🔹 Example 2: Generic Method
+class Utilities
+{
+    public static void Print<T>(T data)
+    {
+        Console.WriteLine(data);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Utilities.Print<int>(123);       // Output: 123
+        Utilities.Print<string>("C#");   // Output: C#
+        Utilities.Print<double>(3.14);   // Output: 3.14
+    }
+}
+
+🔹 Example 3: Generic Interface
+interface IRepository<T>
+{
+    void Add(T item);
+    T Get(int id);
+}
+
+🔹 Example 4: Generics with Collections
+
+C# provides generic collections in System.Collections.Generic.
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        List<string> names = new List<string>();
+        names.Add("Rahim");
+        names.Add("Karim");
+
+        foreach (var name in names)
+            Console.WriteLine(name);
+    }
+}
+
+🔹 Example 5: Generic Constraints
+
+You can restrict what types can be used with T.
+
+class Calculator<T> where T : struct   // only value types
+{
+    public T Number { get; set; }
+}
+
+
+Some common constraints:
+
+where T : struct → only value types
+
+where T : class → only reference types
+
+where T : new() → must have a default constructor
+
+where T : BaseClass → must inherit from BaseClass
+
+where T : InterfaceName → must implement an interface
+
+🔹 Example 6: Multiple Type Parameters
+class Pair<TKey, TValue>
+{
+    public TKey Key { get; set; }
+    public TValue Value { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Pair<int, string> p = new Pair<int, string>();
+        p.Key = 1;
+        p.Value = "One";
+
+        Console.WriteLine($"{p.Key} = {p.Value}");
+    }
+}
